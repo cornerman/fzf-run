@@ -2,4 +2,4 @@
 
 history_file=~/.fzf_run_programs_history
 
-cat <(dmenu_path) $history_file | sort | uniq -c | sort -srn -k1 | sed 's/^ *//' | cut -d' ' -f 2- | fzf | tee -a $history_file | xargs -I {} sh -c 'nohup sh -c "{} &" > /dev/null 2>&1'
+cat <(dmenu_path) "$history_file" | sort | uniq -c | sort -srn -k1 | sed 's/^ *//' | cut -d' ' -f 2- | fzf --no-sort --bind 'ctrl-r:print-query' | tee -a "$history_file" | xargs -I {} sh -c 'nohup sh -c "{} &" > /dev/null 2>&1'
