@@ -9,5 +9,5 @@ history_file=~/.fzf_run_programs_history
 # - TODO: launch multiple programs
 
 cat <(dmenu_path) "$history_file" | sort | uniq -c | sort -srn -k1 | sed 's/^ *//' | cut -d' ' -f 2- |
-  fzf --no-sort --multi --bind 'ctrl-r:print-query' | tee -a "$history_file" |
-  xargs -I {} nohup sh -c 'zsh -ic "exec {} & disown" > /dev/null 2>&1 &'
+  fzf --no-sort --multi --bind 'ctrl-r:print-query,right:replace-query' | tee -a "$history_file" |
+  xargs -I {} nohup sh -c 'zsh -ic "{} & disown" > /dev/null 2>&1 &'
